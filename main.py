@@ -67,6 +67,9 @@ class HananeCli(botpy.Client):
         elif message.content.startswith("/uid"):
             await self.uid_handle(message, from_dms=from_dms)
 
+        elif message.content == "/help":
+            await self.help_handle(message=message, from_dms=from_dms)
+
         elif message.content == "/创建私聊" and not isinstance(message, DirectMessage):
             await self.dms(message=message, content="Hello!")
 
@@ -124,6 +127,11 @@ class HananeCli(botpy.Client):
             music = await maimai_dx.query_music_by_uid(uid)
             await self.send(music.get_info(), file_image=await music.get_cover(),
                             message=message, from_dms=from_dms)
+
+    async def help_handle(self, message: Message, from_dms=False):
+        """帮助说明"""
+        help_content = "这里是帮助信息，但是还没有写（x"
+        await self.send(help_content, message=message, from_dms=from_dms, reference=True)
 
     async def on_at_message_create(self, message: Message):
         """接收at信息"""
