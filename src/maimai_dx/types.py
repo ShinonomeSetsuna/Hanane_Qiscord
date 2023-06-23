@@ -1,27 +1,25 @@
 """自定义数据类型"""
+from typing import TypedDict
 import aiohttp
 
 
-class MusicScore:
-    """自定义乐曲格式"""
-
-    def __init__(self, data: dict) -> None:
-        # 乐曲信息
-        self.title = data["title"]
-        self.song_id = data["song_id"]
-        self.real_level = data["ds"]
-        self.type = data["type"]
-        # 乐曲成绩
-        self.achievement = data["achievements"]
-        self.dx_score = data["dxScore"]
-        self.rating = data["ra"]
-        self.rate = data["rate"]
-        self.full_combo = data["fc"]
-        self.full_sync = data["fs"]
-        # 乐曲难度
-        self.level = data["level"]
-        self.level_label = data["level_label"]
-        self.level_index = data["level_index"]
+class MusicScore(TypedDict):
+    """MusicScore Type"""
+    title: str
+    song_id: str
+    ds: float
+    type: str
+    # 乐曲成绩
+    achievements: float
+    dxScore: int
+    fc: str
+    fs: str
+    ra: float
+    rate: str
+    # 乐曲难度
+    level: str
+    level_label: int
+    level_index: str
 
 
 class BestMaimai:
@@ -35,6 +33,10 @@ class BestMaimai:
             i) for i in score_json["charts"]["sd"]]
         self.b15: list[MusicScore] = [MusicScore(
             i) for i in score_json["charts"]["dx"]]
+
+
+class MusicObject:
+    """"""
 
 
 class Music:

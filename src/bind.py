@@ -3,7 +3,7 @@ import json
 
 
 FP = "database/username.json"  # 用户名储存位置，如果使用数据库记得把下面的也改了
-user_excel = dict()
+user_excel = {}
 
 
 with open(FP, "r", encoding="utf-8") as excel_file_read:
