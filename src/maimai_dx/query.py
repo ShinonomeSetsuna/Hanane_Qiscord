@@ -18,8 +18,7 @@ async def query_music(tips: str) -> str:
             return "未找到相关乐曲！"
         if len(result) > 10:
             return "结果过多，请输入更精确的关键词！"
-        else:
-            return "您要查找的乐曲可能是: \n" + "\n".join([f"{i.uid}. {i.title}" for i in result])
+        return "您要查找的乐曲可能是: \n" + "\n".join([f"{i.uid}. {i.title}" for i in result])
 
 
 async def query_music_by_uid(uid: int) -> Music:

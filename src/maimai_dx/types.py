@@ -62,8 +62,13 @@ class Music:
         return f"{self.title}\n" + \
             "\n".join([f"{i}: {self.basic_info[i]}" for i in self.basic_info])
 
+    def get_uid(self) -> str:
+        """对uid进行换算"""
+        return f"{(self.int if (self.int < 11000 and self.int > 10000) else self.int):05d}"
+
     async def get_cover(self) -> bytes:
         """获取乐曲封面"""
         async with aiohttp.request("GET",
-                                   f"https://www.diving-fish.com/covers/{(self.int if (self.int < 11000 and self.int > 10000) else self.int):05d}.png") as repo:
+                                   f"https://www.diving-fish.com/covers/{self.get_uid()}.png") \
+                as repo:
             return await repo.read()
