@@ -5,7 +5,6 @@ from botpy.types.message import Message, Reference
 
 from bot_token import BOT_APPID as appid
 from bot_token import TOKEN as token
-from src.bind import bind_user, show_bind
 from src import maimai_dx
 
 
@@ -76,7 +75,7 @@ class HananeCli(botpy.Client):
     async def b50_handle(self, message: Message, from_dms=False):
         """处理b50指令"""
         if message.content == '/b50':
-            username = show_bind(message.author.id)
+            username = maimai_dx.show_bind(message.author.id)
         else:
             username = message.content[5:]
 
@@ -101,12 +100,12 @@ class HananeCli(botpy.Client):
     async def bind_handle(self, message: Message, from_dms=False):
         """处理/bind指令"""
         if message.content == '/bind':
-            await self.send(f"当前绑定的用户名为: {show_bind(message.author.id)}",
+            await self.send(f"当前绑定的用户名为: {maimai_dx.show_bind(message.author.id)}",
                             message=message, from_dms=from_dms, reference=True)
         elif message.content.startswith('/bind ') and len(message.content) > 6:
             username = message.content[6:]  # startswith '/bind '
             user_id = message.author.id
-            bind_user(user_id, username)
+            maimai_dx.bind_user(user_id, username)
             await self.send(f"成功绑定用户名\"{username}\"!", message=message,
                             from_dms=from_dms, reference=True)
         else:

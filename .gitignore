@@ -154,6 +154,7 @@ cython_debug/
 
 # 使用json格式保存的数据内容
 database/username.json
+database/account.json
 bot_token.py
 
 # bot日志
@@ -162,10 +163,13 @@ botpy.log
 # vscode配置
 .vscode
 
+# font文件
+src/__font__
+
 # PyCharm
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
 #  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
-database/account.json
+database/test.json
